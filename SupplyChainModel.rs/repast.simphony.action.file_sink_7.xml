@@ -1,0 +1,16 @@
+<repast.simphony.data2.engine.FileSinkDescriptor simphonyVersion="2.6.0">
+  <name>Money Average</name>
+  <dataSet>DC Agent Money Average</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>Money avg. 1 Producers</string>
+    <string>Money avg. 2 Internationals</string>
+    <string>Money avg. 3 Wholesalers</string>
+    <string>Money avg. 4 Retailers</string>
+    <string>Money avg. 5 Consumers</string>
+  </sourceIds>
+  <fileName>C:\Work\Output\SimulationOutput22-03-2019\AvgWealthOutput.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

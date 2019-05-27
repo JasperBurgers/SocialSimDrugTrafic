@@ -1,0 +1,67 @@
+<repast.simphony.data2.engine.DataSetDescriptor simphonyVersion="2.6.0">
+  <name>DC Agent Count</name>
+  <type>AGGREGATE</type>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>1488353859</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Count 1 Producers</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Count 1 Producers</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getCountProducers</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Count 2 Internationals</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Count 2 Internationals</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getCountInternationals</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Count 3 Wholesalers</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Count 3 Wholesalers</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getCountWholesalers</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Count 4 Retailers</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Count 4 Retailers</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getCountRetailers</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Count 5 Consumers</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Count 5 Consumers</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getCountConsumers</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

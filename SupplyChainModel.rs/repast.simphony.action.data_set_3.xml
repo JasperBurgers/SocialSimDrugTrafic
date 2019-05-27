@@ -1,0 +1,49 @@
+<repast.simphony.data2.engine.DataSetDescriptor simphonyVersion="2.6.0">
+  <name>DC All</name>
+  <type>AGGREGATE</type>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>270020845</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Stock consumed tot</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Stock consumed tot</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getStockConsumedTot</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Stock created tot</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Stock created tot</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getStockCreatedTot</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Stock deleted tot</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Stock deleted tot</id>
+        <className>supplyChainModel.DataCollector</className>
+        <methodName>getStockDeletedTot</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

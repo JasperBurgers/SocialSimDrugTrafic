@@ -1,0 +1,15 @@
+<repast.simphony.data2.engine.FileSinkDescriptor simphonyVersion="2.6.0">
+  <name>Agent State</name>
+  <dataSet>Agent Data</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>Id</string>
+    <string>LocationX</string>
+    <string>LocationY</string>
+    <string>Money</string>
+  </sourceIds>
+  <fileName>C:\Work\Output\SimulationOutput22-03-2019\AgentState.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

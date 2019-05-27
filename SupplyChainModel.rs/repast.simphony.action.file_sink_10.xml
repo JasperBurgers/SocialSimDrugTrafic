@@ -1,0 +1,16 @@
+<repast.simphony.data2.engine.FileSinkDescriptor simphonyVersion="2.6.0">
+  <name>Order State</name>
+  <dataSet>Order Data</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>IdClient</string>
+    <string>IdSupplier</string>
+    <string>LocationX</string>
+    <string>LocationY</string>
+    <string>Size</string>
+  </sourceIds>
+  <fileName>C:\Work\Output\SimulationOutput22-03-2019\OrderState.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

@@ -1,0 +1,16 @@
+<repast.simphony.data2.engine.FileSinkDescriptor simphonyVersion="2.6.0">
+  <name>Shipment State</name>
+  <dataSet>Shipment Data</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>IdSupplier</string>
+    <string>IdClient</string>
+    <string>LocationX</string>
+    <string>LocationY</string>
+    <string>Size</string>
+  </sourceIds>
+  <fileName>C:\Work\Output\SimulationOutput22-03-2019\ShipmentState.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

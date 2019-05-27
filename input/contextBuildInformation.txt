@@ -1,0 +1,9 @@
+%Name,types[0=0,1=1,2=234,3=34],price,quality
+South America,0,0,0
+International,1,0,0
+The Netherlands,2,50,57.92
+Spain,2,10,47.43
+Germany,3,10,42.76
+United Kingdom,3,10,41.44
+Italy,3,10,52.89
+France,3,10,50.81

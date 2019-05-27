@@ -1,0 +1,55 @@
+<repast.simphony.data2.engine.DataSetDescriptor simphonyVersion="2.6.0">
+  <name>Agent Data</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>supplyChainModel.agents.BaseAgent</sourceType>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>214488370</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Id</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Id</id>
+        <className>supplyChainModel.agents.BaseAgent</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>LocationX</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>LocationX</id>
+        <className>supplyChainModel.agents.BaseAgent</className>
+        <methodName>getLocationX</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>LocationY</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>LocationY</id>
+        <className>supplyChainModel.agents.BaseAgent</className>
+        <methodName>getLocationY</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Money</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Money</id>
+        <className>supplyChainModel.agents.BaseAgent</className>
+        <methodName>getMoney</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>
