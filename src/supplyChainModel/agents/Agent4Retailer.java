@@ -72,7 +72,35 @@ public class Agent4Retailer extends BaseAgent {
 					HashMap<Byte, Double> goodsToSend = findGoodsInStock(orderedGoodsCombined);
 					if (!goodsToSend.isEmpty()) {
 						
-						new Shipment(clientOrders.get(0).getClient(), this, goodsToSend, calculateCostOfGoods(goodsToSend, sellPrice), RepastParam.getShipmentStep()); 
+						// addition Social Simulation
+						String country = baseCountry.getName();
+						
+						double riskfactor = 0;
+						switch(country){
+							case "The Netherlands":
+								riskfactor = 0.82;
+								break;
+							case "Germany":
+								riskfactor = 1.003; 
+								break;
+							case "France":
+								riskfactor = 0.85; 
+								break;
+							case "United Kingdom":
+								riskfactor = 1.38; 
+								break;
+							case "Italy":
+								riskfactor = 1.08; 
+								break;
+							case "Spain":
+								riskfactor = 0.87; 
+								break;
+							default:
+								Logger.logMain("This country is " + country);
+								Logger.logError("This is not a valid country");
+						}
+						
+						new Shipment(clientOrders.get(0).getClient(), this, goodsToSend, calculateCostOfGoods(goodsToSend, sellPrice, riskfactor), RepastParam.getShipmentStep()); 
 						relationsC.get(clientOrders.get(0).getClient().getId()).addMyShipment(goodsToSend);
 					}
 					for (Order order : clientOrders) 
