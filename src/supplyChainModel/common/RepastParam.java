@@ -60,7 +60,7 @@ public final class RepastParam {
 	
 	public static double getProductionMax() {
 		return productionMax;
-	}	
+	}
 	
 	public static int getShipmentStep() {
 		return shipmentStep;
