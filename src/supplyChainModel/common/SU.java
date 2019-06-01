@@ -17,6 +17,7 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.util.SimUtilities;
 import supplyChainModel.DataCollector;
 import supplyChainModel.agents.BaseAgent;
+import supplyChainModel.agents.CountryAgent;
 
 /**
  * Simulation utility class. This class contains useful functions
@@ -253,6 +254,34 @@ public class SU {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Returns a risk factor based on the years of imprisonment for a drug trafficking offense.
+	 * 
+	 * @param country
+	 * @return the risk factor for a given country
+	 */
+	public static double riskFactor(CountryAgent country) {
+		String countryName = country.getName();
+		
+		switch(countryName){
+			case "The Netherlands":
+				return 0.82;
+			case "Germany":
+				return 1.003; 
+			case "France":
+				return 0.85; 
+			case "United Kingdom":
+				return 1.38; 
+			case "Italy":
+				return 1.08; 
+			case "Spain":
+				return 0.87; 
+			default:
+				Logger.logError(country + " is not a valid country.");
+				return 1;
 		}
 	}
 }
