@@ -60,6 +60,7 @@ public class Agent4Retailer extends BaseAgent {
 			for (Order order : getArrivedOrders()) {
 				if (order.getClient().getId() == client.getAgent().getId()) {
 					clientOrders.add(order);
+					
 					if (!order.isSaved())
 						gotANewOrder = true;
 				}
@@ -74,10 +75,10 @@ public class Agent4Retailer extends BaseAgent {
 					HashMap<Byte, Double> goodsToSend = findGoodsInStock(orderedGoodsCombined);
 					if (!goodsToSend.isEmpty()) {						
 						new Shipment(clientOrders.get(0).getClient(), this, goodsToSend,
-								calculateCostOfGoods(goodsToSend, sellPrice, SU.riskFactor(baseCountry)), RepastParam.getShipmentStep()); 
+								calculateCostOfGoods(goodsToSend, sellPrice, SU.riskFactor(baseCountry), SU.travelcosts(client.getAgent().getCountry(), baseCountry)), RepastParam.getShipmentStep()); 
 						relationsC.get(clientOrders.get(0).getClient().getId()).addMyShipment(goodsToSend);
 					}
-					for (Order order : clientOrders) 
+					for (Order order : clientOrders)
 						order.remove();
 				}
 				else {
