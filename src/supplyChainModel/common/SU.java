@@ -284,4 +284,12 @@ public class SU {
 				return 1;
 		}
 	}
+	public static double travelcosts(CountryAgent clientcountry, CountryAgent suppliercountry) {
+	String clientName = clientcountry.getName();
+	String supplierName = suppliercountry.getName();
+	if (clientName == supplierName)
+		return 1;
+	else
+		return 2;
+}
 }
