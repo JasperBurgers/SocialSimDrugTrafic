@@ -26,9 +26,22 @@ public class Agent4Retailer extends BaseAgent {
 		
 		setStartingStock();
 	}
-	
+
 	@Override
 	public void stepProcessArrivedShipments() {
+		if (!SU.isInitializing()) {
+			// Chance to be arrested per tick
+			if (RandomHelper.nextDouble() < RepastParam.getArrestProbabilityR()) {
+				remove();
+			}
+			
+			// Intercept shipments
+			for (Shipment shipment : getArrivedShipments()) {
+				if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbabilityR()) {
+					shipment.remove();
+				}
+			}
+		}
 		
 		updateArrivedShipments();
 		

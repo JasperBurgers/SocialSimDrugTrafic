@@ -8,6 +8,7 @@ import repast.simphony.random.RandomHelper;
 import supplyChainModel.common.Constants;
 import supplyChainModel.common.Logger;
 import supplyChainModel.common.RepastParam;
+import supplyChainModel.common.SU;
 import supplyChainModel.enums.SCType;
 import supplyChainModel.support.Order;
 import supplyChainModel.support.Shipment;
@@ -28,7 +29,20 @@ public class Agent3Wholesaler extends BaseAgent {
 
 	@Override
 	public void stepProcessArrivedShipments() {
-		
+		if (!SU.isInitializing()) {
+			// Chance to be arrested per tick
+			if (RandomHelper.nextDouble() < RepastParam.getArrestProbabilityW()) {
+				remove();
+			}
+			
+			// Intercept shipments
+			for (Shipment shipment : getArrivedShipments()) {
+				if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbabilityW()) {
+					shipment.remove();
+				}
+			}
+		}
+
 		updateArrivedShipments();
 		
 		for (Shipment shipment : getArrivedShipments()) {

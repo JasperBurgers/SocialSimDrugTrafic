@@ -1020,3 +1020,4 @@ public class BaseAgent {
 		SU.getContinuousSpace().moveTo(this, newPos.getX(), newPos.getY());	
 		SU.getGrid().moveTo(this, newPos.x, newPos.y);
 	}
+}

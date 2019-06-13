@@ -75,10 +75,12 @@ public class Agent5Consumer extends BaseAgent {
 	
 	@Override
 	public void stepProcessArrivedShipments() {
-		// Intercept shipments
-		for (Shipment shipment : getArrivedShipments()) {
-			if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbability()) {
-				shipment.remove();
+		if (!SU.isInitializing()) {
+			// Intercept shipments
+			for (Shipment shipment : getArrivedShipments()) {
+				if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbabilityC()) {
+					shipment.remove();
+				}
 			}
 		}
 		

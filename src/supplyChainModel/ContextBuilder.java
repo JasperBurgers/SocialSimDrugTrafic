@@ -223,7 +223,7 @@ public class ContextBuilder implements repast.simphony.dataLoader.ContextBuilder
 		
 		for (SCType scType : SCType.values()) {
 			
-			if (RandomHelper.nextDouble() <= RepastParam.getSpawnRate()) {
+			if (RandomHelper.nextDouble() < RepastParam.getSpawnRate()) {
 				
 				for (CountryAgent country : SU.getObjectsAllRandom(CountryAgent.class)) {
 					if (country.containsSCType(scType)) {

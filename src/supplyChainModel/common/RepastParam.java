@@ -18,10 +18,19 @@ public final class RepastParam {
 	private static double consumptionMax = 5;
 	private static double productionMax = 10;
 	private static int shipmentStep = 3;
-	private static double spawnRate = 0.01;
+	private static double spawnRate = 0.015;
 	private static int ticksInitPopulation = 100;
 	private static double sendShipmentProbability = 1;
-	private static double interceptionProbability = 0.2;
+	
+	// The probability for any shipment to W, R, or C to be intercepted upon arrival
+	private static double interceptionProbabilityW = 0.00;
+	private static double interceptionProbabilityR = 0.00;
+	private static double interceptionProbabilityC = 0.00;
+	
+	// The probability for any wholesaler or retailer to be arrested per tick
+	private static double arrestProbabilityW = 0.00;
+	private static double arrestProbabilityR = 0.00;
+	
 	private static int producerNumberCap = 8;
 	private static boolean limitedSuppliersClients = false;
 	
@@ -33,7 +42,7 @@ public final class RepastParam {
 		consumptionMax = p.getDouble("pConMax");
 		productionMax = p.getDouble("pProdMax");
 		shipmentStep = p.getInteger("pShipmentStep");
-		spawnRate = p.getDouble("pSpawnRate");
+		//spawnRate = p.getDouble("pSpawnRate");
 		ticksInitPopulation = p.getInteger("pTicksInitPopulation");
 		sendShipmentProbability = p.getDouble("pSendShipmentProbability");
 		producerNumberCap = p.getInteger("pProducerNumberCap");
@@ -86,7 +95,23 @@ public final class RepastParam {
 		return limitedSuppliersClients;
 	}
 	
-	public static double getInterceptionProbability() {
-		return interceptionProbability;
+	public static double getInterceptionProbabilityW() {
+		return interceptionProbabilityW;
+	}
+	
+	public static double getInterceptionProbabilityR() {
+		return interceptionProbabilityR;
+	}
+	
+	public static double getInterceptionProbabilityC() {
+		return interceptionProbabilityC;
+	}
+	
+	public static double getArrestProbabilityW() {
+		return arrestProbabilityW;
+	}
+	
+	public static double getArrestProbabilityR() {
+		return arrestProbabilityR;
 	}
 }
