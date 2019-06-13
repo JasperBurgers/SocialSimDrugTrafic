@@ -150,6 +150,41 @@ public class BaseAgent {
 	 * if there is one available, who is also looking for a new client,
 	 * then the function returns and adds the new supplier (only one supplier is added)
 	 */
+	/**
+	 * Search for new supplier for consumer
+	 * the consumer search a new supplier in his own country
+	 * if there is non, search for other countries but price will be added 2x
+	 */
+	public void ConsumersearchSuppliers() {
+		
+		if (!getRequireNewSupplier())
+			return ;
+		
+		Network<Object> net = SU.getNetworkSC();
+		if (net.getInDegree(this) < Constants.MAX_NUMBER_OF_ACTIVE_SUPPLIERS) { //TODO change this to a search for active suppliers
+			
+			ArrayList<TrustCompare> allPossibleSuppliersSorted = sortAverageTrustInSuppliers(possibleNewSuppliers);
+			for (TrustCompare sCompare : allPossibleSuppliersSorted) {
+				
+				// Condition for layer
+				if (sCompare.getAgent().getScLayer() == (scType.getScLayer() - 1) && sCompare.getAgent().getCountry() == this.baseCountry)
+						{
+					addSupplier(sCompare.getAgent());
+					sCompare.getAgent().addClient(this);
+					return;
+					
+						}
+				else if (sCompare.getAgent().getScLayer() == (scType.getScLayer() - 1)
+						&& possibleNewSuppliers.contains(sCompare.getAgent().getId()) && sCompare.getAgent().getRequireNewClient()) {
+					
+					addSupplier(sCompare.getAgent());
+					sCompare.getAgent().addClient(this);
+					return ;
+				}
+			}
+		}
+	}
+	
 	public void searchSuppliers() {
 		
 		if (!getRequireNewSupplier())
@@ -162,7 +197,8 @@ public class BaseAgent {
 			for (TrustCompare sCompare : allPossibleSuppliersSorted) {
 				
 				// Condition for layer
-				if (sCompare.getAgent().getScLayer() == (scType.getScLayer() - 1) && possibleNewSuppliers.contains(sCompare.getAgent().getId()) && sCompare.getAgent().getRequireNewClient()) {
+				 if (sCompare.getAgent().getScLayer() == (scType.getScLayer() - 1)
+						&& possibleNewSuppliers.contains(sCompare.getAgent().getId()) && sCompare.getAgent().getRequireNewClient()) {
 					
 					addSupplier(sCompare.getAgent());
 					sCompare.getAgent().addClient(this);
@@ -206,18 +242,20 @@ public class BaseAgent {
 		return unsorted;
 	}
 
+	
 	/**
 	 * Search for a new client if the agent requires a new client,
 	 * if there is one available that is looking for a new supplier
-	 * returns when it found a new client (to only add one at a time)
+	 * returns when it found a new client (to only add one at a time) // TODO wil dit andersom hebben..
 	 */
+	
 	public void searchClients() {
 		
 		if (!getRequireNewClient())
 			return ;
 		
 		Network<Object> net = SU.getNetworkSC();
-		if (net.getOutDegree(this) < Constants.MAX_NUMBER_OF_ACTIVE_CLIENTS) { //TODO change this to a search for active clients
+		if (net.getOutDegree(this) < Constants.MAX_NUMBER_OF_ACTIVE_CLIENTS) { //TODO change this to a search for active clients //TODO let client pick supplier
 			
 			ArrayList<TrustCompare> allPossibleClientsSorted = sortAverageTrustInClients(possibleNewClients);
 			for (TrustCompare cCompare : allPossibleClientsSorted) {
@@ -353,8 +391,9 @@ public class BaseAgent {
 	 * @return
 	 */
 	public double retrieveSupplierTrust(int otherId) {
-		if (relationsS.containsKey(otherId)) 
-			return relationsS.get(otherId).getTrustLevel();
+		if (relationsS.containsKey(otherId)) {
+			Logger.logMain("hallo"+ getNameId()+ "consumer and the " + otherId + "supplier, the trustlevel is "+ relationsS.get(otherId).getTrustLevel());
+			return relationsS.get(otherId).getTrustLevel();}
 		else
 			return -1;
 	}
@@ -394,14 +433,14 @@ public class BaseAgent {
 		return cost;
 	}
 	
-	public double calculateCostOfGoods(HashMap<Byte, Double> goodsToSend, double sellPrice, double riskfactor) {
+	public double calculateCostOfGoods(HashMap<Byte, Double> goodsToSend, double sellPrice, double riskfactor, double travelcosts) {
 		
 		double cost = 0;
 		for (Byte goodsQuality : goodsToSend.keySet()) {
 			if (goodsToSend.get(goodsQuality) == Constants.QUALITY_MAXIMUM)
-				cost += goodsToSend.get(goodsQuality) * (sellPrice*riskfactor) * Constants.QUALITY_MAX_EXTRA_COST;
+				cost += goodsToSend.get(goodsQuality) * (sellPrice*riskfactor*travelcosts) * Constants.QUALITY_MAX_EXTRA_COST;
 			else
-				cost += goodsToSend.get(goodsQuality) * (sellPrice*riskfactor);
+				cost += goodsToSend.get(goodsQuality) * (sellPrice*riskfactor*travelcosts);
 		}
 		return cost;
 	}
@@ -676,7 +715,8 @@ public class BaseAgent {
 	
 	public void addPossibleNewSupplier(BaseAgent supplier) {
 		
-		if (!RepastParam.getLimitedSuppliersClients() || supplier.checkCanKnowAgent(SU.getGrid().getLocation(this).getY()) || possibleNewSuppliers.isEmpty()) {
+		if (!RepastParam.getLimitedSuppliersClients() || supplier.getCountry() == this.baseCountry || /*aanpassing**/
+				supplier.checkCanKnowAgent(SU.getGrid().getLocation(this).getY()) || possibleNewSuppliers.isEmpty()) {
 			if (!possibleNewSuppliers.contains(supplier.getId()))
 				possibleNewSuppliers.add(supplier.getId());
 		}
@@ -684,7 +724,8 @@ public class BaseAgent {
 	
 	public void addPossibleNewClient(BaseAgent client) {
 		
-		if (!RepastParam.getLimitedSuppliersClients() || client.checkCanKnowAgent(SU.getGrid().getLocation(this).getY()) || possibleNewClients.isEmpty()) {
+		if (!RepastParam.getLimitedSuppliersClients() || client.getCountry() == this.baseCountry || /* aanpassing */
+				client.checkCanKnowAgent(SU.getGrid().getLocation(this).getY()) || possibleNewClients.isEmpty()) {
 			if (!possibleNewClients.contains(client.getId()))
 				possibleNewClients.add(client.getId());
 		}
@@ -979,4 +1020,3 @@ public class BaseAgent {
 		SU.getContinuousSpace().moveTo(this, newPos.getX(), newPos.getY());	
 		SU.getGrid().moveTo(this, newPos.x, newPos.y);
 	}
-}
