@@ -16,6 +16,8 @@ import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridBuilderParameters;
 import repast.simphony.space.grid.SimpleGridAdder;
+import supplyChainModel.agents.Agent3Wholesaler;
+import supplyChainModel.agents.Agent4Retailer;
 import supplyChainModel.agents.Agent5Consumer;
 import supplyChainModel.agents.BaseAgent;
 import supplyChainModel.agents.CountryAgent;
@@ -222,8 +224,17 @@ public class ContextBuilder implements repast.simphony.dataLoader.ContextBuilder
 			return ;
 		
 		for (SCType scType : SCType.values()) {
+			double spawnRate = RepastParam.getSpawnRate();
 			
-			if (RandomHelper.nextDouble() < RepastParam.getSpawnRate()) {
+			if (RepastParam.getDynamicSpawnRate()) {
+				if (scType == SCType.WHOLESALER) {
+					spawnRate = (0.5 * RepastParam.getSpawnRate() * SU.getObjectsCount(Agent4Retailer.class)) / SU.getObjectsCount(Agent3Wholesaler.class);
+				} else if (scType == SCType.RETAIL) {
+					spawnRate = (0.5 * RepastParam.getSpawnRate() * SU.getObjectsCount(Agent5Consumer.class)) / SU.getObjectsCount(Agent4Retailer.class);
+				}
+			}
+			
+			if (RandomHelper.nextDouble() < spawnRate) {
 				
 				for (CountryAgent country : SU.getObjectsAllRandom(CountryAgent.class)) {
 					if (country.containsSCType(scType)) {

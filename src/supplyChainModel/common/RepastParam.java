@@ -31,6 +31,8 @@ public final class RepastParam {
 	private static double arrestProbabilityW = 0.00;
 	private static double arrestProbabilityR = 0.00;
 	
+	private static boolean dynamicSpawnRate = true;
+	
 	private static int producerNumberCap = 8;
 	private static boolean limitedSuppliersClients = false;
 	
@@ -113,5 +115,9 @@ public final class RepastParam {
 	
 	public static double getArrestProbabilityR() {
 		return arrestProbabilityR;
+	}
+	
+	public static boolean getDynamicSpawnRate() {
+		return dynamicSpawnRate;
 	}
 }
