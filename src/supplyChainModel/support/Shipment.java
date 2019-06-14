@@ -54,8 +54,13 @@ public class Shipment {
 	}
 	
 	public void remove() {
-		
 		SU.getContext().remove(this);
+	}
+	
+	// Remove method for police interceptions. Goods are removed from the system.
+	public void intercept() {
+		SU.getContext().remove(this);
+		SU.getDataCollector().addDeletedStock(goods);
 	}
 	
 	// Getters and setters

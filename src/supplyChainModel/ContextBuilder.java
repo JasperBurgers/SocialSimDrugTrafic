@@ -200,7 +200,11 @@ public class ContextBuilder implements repast.simphony.dataLoader.ContextBuilder
 		}
 		
 		if (SU.getTick() >= RepastParam.getRunLength()) {
-			
+			System.out.println();
+			System.out.println("Produced stock: " + SU.getDataCollector().getStockCreatedTot());
+			System.out.println("Consumed stock: " + SU.getDataCollector().getStockConsumedTot());
+			System.out.println("Deleted stock: " + SU.getDataCollector().getStockDeletedTot());
+			System.out.println();
 			Logger.logMain("------------------------------------------------------------------------------");
 			saveRelations();
 			RunEnvironment.getInstance().pauseRun();

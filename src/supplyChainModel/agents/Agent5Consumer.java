@@ -79,7 +79,7 @@ public class Agent5Consumer extends BaseAgent {
 			// Intercept shipments
 			for (Shipment shipment : getArrivedShipments()) {
 				if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbabilityC()) {
-					shipment.remove();
+					shipment.intercept();
 				}
 			}
 		}

@@ -38,7 +38,7 @@ public class Agent4Retailer extends BaseAgent {
 			// Intercept shipments
 			for (Shipment shipment : getArrivedShipments()) {
 				if (RandomHelper.nextDouble() < RepastParam.getInterceptionProbabilityR()) {
-					shipment.remove();
+					shipment.intercept();
 				}
 			}
 		}
